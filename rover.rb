@@ -1,8 +1,13 @@
 class Rover
+
+  attr_reader :x
+  attr_reader :y
+  attr_reader :d
+
   def initialize(x, y, d)
-    @x = x.to_i #XplusE XnegW
-    @y = y.to_i #YplusN #YnegS
-    @d = d.to_i #n0 e1 s2 w3
+    @x = x.to_i
+    @y = y.to_i
+    @d = d.to_i #DIRECTION is an integer based compass (N=0, E=1, S=2, W=3) allowing the rover to turn via simple addition and subtraction
   end
 
 #// the move and turn methods simply process the direction the rover is facing depending on an integer compass, and allow it to move from a input
@@ -39,7 +44,7 @@ class Rover
   end
 
 
-
+#// This just takes the numberical compass bearing and converts it into a readable format. Then it combines that with the co-ords to report its status
 def report
   if @d == 0
     englishheading = "North"
@@ -52,11 +57,9 @@ def report
   end
   puts "My position is X:#{@x},Y:#{@y}. I am currently facing #{englishheading}"
 end
+
+
 #  //This code takes the various letters, splits them into an array, clears any random chars, then feeds them to the other methods"
-
-
-
-
   def read(letters)
     split_letters = letters.split ("")
     finish = split_letters.map do |element|
@@ -71,7 +74,6 @@ end
       end
     end
     finish.compact!
-        puts "#{finish}"
     finish.each do |action|
       if action == "move"
         self.move
@@ -83,12 +85,4 @@ end
     end
     self.report
   end
-
 end
-
-#what inputs does my class take
-# integer values for x and y, and "left" and "right" for turning
-
-#
-# direction = {"N" => 0, "E" => 1, "S" => 2, "W" => 3}
-# direction = ["N", "E", "S", "W"]
