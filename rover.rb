@@ -1,8 +1,8 @@
 class Rover
   def initialize(x, y, d)
-    @x = x.to_i
-    @y = y.to_i
-    @d = d.to_i #n0,e1,s2,w3
+    @x = x.to_i #XplusE XnegW
+    @y = y.to_i #YplusN #YnegS
+    @d = d.to_i #n0 e1 s2 w3
   end
 
   def move
@@ -10,11 +10,11 @@ class Rover
       @y += 1
       puts "moving north #{@x},#{@y}"
 
-    elsif @d == 1
+    elsif @d == 2
       @y -= 1
       puts "moving south #{@x},#{@y}"
 
-    elsif @d == 2
+    elsif @d == 1
       @x += 1
       puts "moving right#{@x},#{@y}"
 
@@ -25,13 +25,13 @@ class Rover
   end
 
   def turn(direction)
-    if direction == "L"
-      @d -+ 1
+    if direction == "left"
+      @d -= 1
       if @d == -1
         @d += 4
       end
       puts "#{@d}"
-    elsif direction == "R"
+    elsif direction == "right"
       @d += 1
       puts "#{@d}"
     end
