@@ -1,2 +1,2 @@
-puts "rover script loaded"
+puts "STARTING ROVER SCRIP Rover script loaded"
 require './rover.rb'
